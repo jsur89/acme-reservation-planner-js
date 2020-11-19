@@ -29,6 +29,20 @@ const renderRestaurants = (restaurants) => {
       `
     )
     .join("");
+  restaurantList.innerHTML = html;
+};
+
+//dont really know what is happening with line 41...
+const renderReservations = (reservations) => {
+  const html = reservations
+    .map(
+      (reservation) => `
+        <li>
+          ${reservation}
+        </li>
+        `
+    )
+    .join("");
   reservationsList.innerHTML = html;
 };
 
@@ -38,6 +52,7 @@ const init = async () => {
     const restaurants = (await axios.get("/api/restaurants")).data;
     renderUsers(users);
     renderRestaurants(restaurants);
+    renderReservations(reservations);
   } catch (ex) {
     console.log(ex);
   }
